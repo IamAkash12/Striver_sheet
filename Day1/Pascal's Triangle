@@ -1,0 +1,56 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+    
+    //Base condition to check if numRows=0 or not
+    
+        if(numRows==0) return new ArrayList <>();
+
+        List<List<Integer>> ls = new ArrayList <>();
+
+        for(int i=1;i<=numRows;i++){
+       
+            List<Integer> row = new ArrayList<>();
+            
+            //Storing 1 at 0 and j-1 position
+            
+                      1
+                    1   1
+                  1        1
+                1            1
+                
+                
+            for(int j=0;j<i;j++){
+                if(j==0 || j==i-1){
+                    row.add(1);
+                }
+                
+                // Every element other than is forming by the addition of j,j-1 element of previousRow.
+                
+                      1
+                    1   1
+                  1   2    1                    // 2 is formed by adding j,j-1 element of previous row
+                1            1
+                
+                else{
+                    row.add(ls.get(i-2).get(j)+ ls.get(i-2).get(j-1));
+                }
+            }
+            ls.add(row);
+        }
+        return ls;
+    }
+}
+
+
+
+//Logic for i-2
+
+Index       row
+0            1
+1            2
+2            3
+3            4
+4            5
+
+
+so for creating 5th row we need index 3 i.e i-2
